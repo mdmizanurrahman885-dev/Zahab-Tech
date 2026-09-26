@@ -7,23 +7,18 @@ body.zcs {
 	--zcs-accent-2: #1976D2;
 	--zcs-accent-bg: #E8F0FE;
 	--zcs-green: #22A45D;
-	--zcs-bg: #F0F3F7;
+	--zcs-bg: #F8F9FB;
 	--zcs-surface: #FFFFFF;
-	--zcs-border: #D8E0EA;
+	--zcs-border: #E3E8EF;
 	--zcs-text: #0B1829;
 	--zcs-text-2: #4A5568;
 	--zcs-text-3: #8A96A3;
 	--zcs-danger: #DC2626;
 	--zcs-r: 12px;
 	--zcs-r-sm: 8px;
-	--zcs-shadow: 0 1px 3px rgba(11, 24, 41, .06), 0 6px 20px rgba(11, 24, 41, .05);
+	--zcs-shadow: 0 1px 2px rgba(11, 24, 41, .04), 0 4px 14px rgba(11, 24, 41, .04);
 	--zcs-font: 'Outfit', 'Hind Siliguri', system-ui, sans-serif;
 	--zcs-font-bn: 'Hind Siliguri', 'Outfit', system-ui, sans-serif;
-}
-
-body.zcs .site-content,
-body.zcs #content {
-	background: var(--zcs-bg);
 }
 
 body.zcs .woocommerce {
