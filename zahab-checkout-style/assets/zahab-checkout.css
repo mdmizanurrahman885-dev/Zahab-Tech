@@ -192,6 +192,34 @@ body.zcs .woocommerce :focus-visible {
 	outline-offset: 2px;
 }
 
+/* Astra customizer / Elementor kit button colours load with high specificity; keep brand colours. */
+body.zcs .woocommerce #payment #place_order,
+body.zcs .woocommerce .wc-proceed-to-checkout a.checkout-button {
+	background: var(--zcs-accent) !important;
+	background-color: var(--zcs-accent) !important;
+	border-color: var(--zcs-accent) !important;
+	color: #fff !important;
+}
+
+body.zcs .woocommerce #payment #place_order:hover,
+body.zcs .woocommerce .wc-proceed-to-checkout a.checkout-button:hover {
+	background: var(--zcs-accent-2) !important;
+	background-color: var(--zcs-accent-2) !important;
+	border-color: var(--zcs-accent-2) !important;
+}
+
+body.zcs .woocommerce button[name="apply_coupon"],
+body.zcs .woocommerce button[name="update_cart"]:not(:disabled) {
+	background-color: var(--zcs-navy) !important;
+	border-color: var(--zcs-navy) !important;
+	color: #fff !important;
+}
+
+body.zcs .woocommerce input.input-text:focus,
+body.zcs .woocommerce textarea:focus {
+	border-color: var(--zcs-accent) !important;
+}
+
 /* ───────── Shared: trust badges ───────── */
 
 body.zcs .zcs-trust {
