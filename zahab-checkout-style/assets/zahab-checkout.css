@@ -1,19 +1,21 @@
 /* Zahab Checkout Style — scoped to body.zcs (cart + checkout only) */
 
 body.zcs {
-	--zcs-navy: #1F2937;
-	--zcs-navy-2: #374151;
-	--zcs-accent: #2B4C7E;
-	--zcs-accent-2: #365D96;
-	--zcs-accent-bg: #F3F6FB;
-	--zcs-green: #16A34A;
-	--zcs-bg: #FAFAFB;
+	/* Zahab Tech brand: navy search button/logo, teal "TECH", WhatsApp green, badge red */
+	--zcs-navy: #081B4D;
+	--zcs-navy-2: #12296A;
+	--zcs-accent: #081B4D;
+	--zcs-accent-2: #12296A;
+	--zcs-accent-bg: #F3F8FA;
+	--zcs-teal: #1D95A8;
+	--zcs-green: #1FAF55;
+	--zcs-bg: #F9FBFC;
 	--zcs-surface: #FFFFFF;
-	--zcs-border: #E6E8EC;
-	--zcs-text: #1F2937;
-	--zcs-text-2: #4B5563;
-	--zcs-text-3: #9CA3AF;
-	--zcs-danger: #DC2626;
+	--zcs-border: #E6E9EE;
+	--zcs-text: #061527;
+	--zcs-text-2: #454449;
+	--zcs-text-3: #9A9CA3;
+	--zcs-danger: #F44541;
 	--zcs-r: 10px;
 	--zcs-r-sm: 8px;
 	--zcs-shadow: none;
@@ -106,7 +108,7 @@ body.zcs .woocommerce .select2-container--open .select2-selection--single {
 	outline: none;
 	background: var(--zcs-surface);
 	border-color: var(--zcs-accent);
-	box-shadow: 0 0 0 3px var(--zcs-accent-bg);
+	box-shadow: 0 0 0 3px rgba(29, 149, 168, .16);
 }
 
 body.zcs .woocommerce input::placeholder,
@@ -186,7 +188,7 @@ body.zcs .woocommerce button[name="update_cart"]:disabled {
 }
 
 body.zcs .woocommerce :focus-visible {
-	outline: 2px solid var(--zcs-accent);
+	outline: 2px solid var(--zcs-teal);
 	outline-offset: 2px;
 }
 
@@ -241,7 +243,7 @@ body.zcs .woocommerce-message {
 
 body.zcs .woocommerce-info a,
 body.zcs .woocommerce-message a {
-	color: var(--zcs-accent);
+	color: var(--zcs-teal);
 	font-weight: 600;
 }
 
@@ -710,7 +712,7 @@ body.zcs .woocommerce-checkout #payment div.payment_box input:focus,
 body.zcs .woocommerce-checkout #payment div.payment_box select:focus {
 	outline: none;
 	border-color: var(--zcs-accent);
-	box-shadow: 0 0 0 3px var(--zcs-accent-bg);
+	box-shadow: 0 0 0 3px rgba(29, 149, 168, .16);
 }
 
 body.zcs .woocommerce-checkout #payment div.payment_box input::placeholder {
@@ -731,7 +733,7 @@ body.zcs .woocommerce-terms-and-conditions-wrapper {
 }
 
 body.zcs .woocommerce-terms-and-conditions-wrapper a {
-	color: var(--zcs-accent);
+	color: var(--zcs-teal);
 }
 
 /* ───────── Online payment (MFS + bank) ───────── */
@@ -818,7 +820,7 @@ body.zcs .zcs-op-radio:checked + label.zcs-op-tile {
 }
 
 body.zcs .zcs-op-radio:focus-visible + label.zcs-op-tile {
-	outline: 2px solid var(--zcs-accent);
+	outline: 2px solid var(--zcs-teal);
 	outline-offset: 2px;
 }
 
