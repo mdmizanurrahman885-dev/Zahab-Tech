@@ -1,0 +1,85 @@
+ZAHAB TECH — নতুন Cart ও Checkout পেজ বসানোর নিয়ম
+=====================================================
+
+যা লাগবে: zahab-checkout-style.zip ফাইল (unzip করবেন না)
+সময়: ১০–১৫ মিনিট
+
+
+ধাপ ১ — Plugin ইনস্টল
+-----------------------
+1. zahabtech.com/wp-admin এ লগইন করুন
+2. বাম মেনু → Plugins
+   (আগে "Zahab Checkout Style" থাকলে: Deactivate → Delete)
+3. উপরে "Add New Plugin" → "Upload Plugin"
+4. "Choose File" → zahab-checkout-style.zip বেছে নিন
+5. "Install Now" → "Activate Plugin"
+6. দেখুন: Plugins তালিকায় "Zahab Checkout Style — Version 1.1.2"
+
+
+ধাপ ২ — Cart ও Checkout পেজ ঠিক করা
+--------------------------------------
+1. বাম মেনু → Pages → "Checkout" পেজ → Edit
+2. পেজের সব কিছু মুছে দিন
+3. একটি "Shortcode" ব্লক যোগ করে লিখুন:  [woocommerce_checkout]
+   (Elementor দিয়ে বানানো পেজ হলে Elementor-এ "Shortcode" widget বসিয়ে একই লেখা দিন)
+4. "Update" চাপুন
+5. "Cart" পেজেও একইভাবে করুন, লিখুন:  [woocommerce_cart]
+
+
+ধাপ ৩ — পেমেন্ট সেটিং
+----------------------
+1. WooCommerce → Settings → Payments
+2. "অনলাইন পেমেন্ট" চালু করুন (টগল অন)
+3. "Manage" এ ক্লিক করে নম্বরগুলো মিলিয়ে নিন → "Save changes"
+   * Rocket নম্বর ধরা হয়েছে: 017506465999 — ভুল হলে ঠিক করুন
+4. এগুলো বন্ধ করুন (না হলে অপশন দুবার দেখাবে):
+   - পুরনো bKash/Nagad পেমেন্ট plugin
+   - Direct bank transfer
+5. "Cash on delivery" চালু রাখুন
+
+
+ধাপ ৪ — ডেলিভারি চার্জ (৮০ / ১২০)
+-----------------------------------
+1. WooCommerce → Settings → Shipping
+2. যে zone-এ "Inside Dhaka Delivery" ও "Outside Dhaka Delivery" আছে → Edit
+3. Inside Dhaka Delivery → Edit → Cost: 80 → Save
+4. Outside Dhaka Delivery → Edit → Cost: 120 → Save
+
+
+ধাপ ৫ — পরীক্ষা
+----------------
+1. Cache plugin থাকলে (LiteSpeed / WP Rocket) → "Purge All"
+2. সাইটে একটি পণ্য কার্টে দিন → Cart পেজ দেখুন → Checkout এ যান
+   (কম্পিউটারে Ctrl + Shift + R চাপুন)
+3. একটি পরীক্ষামূলক অর্ডার দিন:
+   অনলাইন পেমেন্ট → bKash → যেকোনো নম্বর ও Transaction ID
+4. WooCommerce → Orders → অর্ডারটি এসেছে কিনা এবং
+   "পেমেন্ট / TrxID" কলামে তথ্য আছে কিনা দেখুন
+5. পরীক্ষা শেষে অর্ডারটি Trash এ দিন
+
+
+প্রতিদিনের কাজ — অনলাইন পেমেন্টের অর্ডার
+------------------------------------------
+- অর্ডার আসবে "On hold" অবস্থায়
+- Orders তালিকায় "পেমেন্ট / TrxID" কলামে Transaction ID দেখুন
+- bKash/Nagad/ব্যাংক অ্যাপে টাকা এসেছে কিনা মিলিয়ে নিন
+- মিললে অর্ডার খুলে Status → "Processing" → Update
+- একই Transaction ID দিয়ে দ্বিতীয় অর্ডার করা যায় না
+- ক্যাশ অন ডেলিভারির অর্ডার সরাসরি "Processing" অবস্থায় আসে
+
+
+নম্বর বা ব্যাংক বদলাতে
+-----------------------
+WooCommerce → Settings → Payments → অনলাইন পেমেন্ট → Manage
+প্রতি লাইনে একটি নম্বর:   নম্বর | বিবরণ
+ব্যাংক প্রতি লাইনে:       ছোট নাম | ব্যাংকের নাম | অ্যাকাউন্টের নাম | অ্যাকাউন্ট নম্বর | শাখা | রাউটিং
+Upay নম্বর দিলে Upay অপশনও চলে আসবে।
+
+
+সমস্যা হলে
+-----------
+- Plugins → "Zahab Checkout Style" → Deactivate
+- Payments এ পুরনো পেমেন্ট plugin আবার চালু করুন
+সাইট সাথে সাথে আগের মতো হয়ে যাবে।
+
+Header, Footer, মেনু — কিছুই বদলায় না।
