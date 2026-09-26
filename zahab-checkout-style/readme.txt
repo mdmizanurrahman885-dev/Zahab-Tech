@@ -22,10 +22,15 @@ Elementor দিয়ে এডিট করা পেজ হলে Shortcode w
 == ডেলিভারি চার্জ (ঢাকার ভেতরে / বাইরে) ==
 
 WooCommerce → Settings → Shipping → Shipping zones থেকে সেট করুন:
-- Zone "ঢাকার ভেতরে" (Region: Dhaka) → Flat rate 70
-- Zone "ঢাকার বাইরে" (Region: Bangladesh) → Flat rate 120
+যে zone-এ "Inside Dhaka Delivery" ও "Outside Dhaka Delivery" আছে সেটি খুলুন:
+- Inside Dhaka Delivery → Edit → Cost: 80
+- Outside Dhaka Delivery → Edit → Cost: 120
+- Save changes
 
 == কী কী বদলায় ==
+
+শুধু Cart ও Checkout পেজের মূল অংশ (#content)। Header, Footer, মেনু, mini-cart বদলায় না।
+
 
 - দুই কলাম লেআউট: বামে ফর্ম, ডানে স্টিকি অর্ডার সারসংক্ষেপ (মোবাইলে এক কলাম)
 - অপ্রয়োজনীয় ফিল্ড বাদ: Company, Address line 2, Postcode

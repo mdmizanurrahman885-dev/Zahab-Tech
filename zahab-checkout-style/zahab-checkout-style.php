@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Zahab Checkout Style
  * Description: Zahab Tech-এর জন্য পরিষ্কার, মোবাইল-ফ্রেন্ডলি Cart ও Checkout পেজ ডিজাইন।
- * Version:     1.1.1
+ * Version:     1.1.2
  * Author:      ZAHAB TECH
  * Requires Plugins: woocommerce
  */
@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ZCS_VERSION', '1.1.1' );
+define( 'ZCS_VERSION', '1.1.2' );
 
 add_action( 'before_woocommerce_init', function () {
 	if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
