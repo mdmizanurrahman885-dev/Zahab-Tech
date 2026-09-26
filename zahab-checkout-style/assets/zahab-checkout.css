@@ -1,22 +1,22 @@
 /* Zahab Checkout Style — scoped to body.zcs (cart + checkout only) */
 
 body.zcs {
-	--zcs-navy: #0B1829;
-	--zcs-navy-2: #1A2F4A;
-	--zcs-accent: #1565C0;
-	--zcs-accent-2: #1976D2;
-	--zcs-accent-bg: #E8F0FE;
-	--zcs-green: #22A45D;
-	--zcs-bg: #F8F9FB;
+	--zcs-navy: #1F2937;
+	--zcs-navy-2: #374151;
+	--zcs-accent: #2B4C7E;
+	--zcs-accent-2: #365D96;
+	--zcs-accent-bg: #F3F6FB;
+	--zcs-green: #16A34A;
+	--zcs-bg: #FAFAFB;
 	--zcs-surface: #FFFFFF;
-	--zcs-border: #E3E8EF;
-	--zcs-text: #0B1829;
-	--zcs-text-2: #4A5568;
-	--zcs-text-3: #8A96A3;
+	--zcs-border: #E6E8EC;
+	--zcs-text: #1F2937;
+	--zcs-text-2: #4B5563;
+	--zcs-text-3: #9CA3AF;
 	--zcs-danger: #DC2626;
-	--zcs-r: 12px;
+	--zcs-r: 10px;
 	--zcs-r-sm: 8px;
-	--zcs-shadow: 0 1px 2px rgba(11, 24, 41, .04), 0 4px 14px rgba(11, 24, 41, .04);
+	--zcs-shadow: none;
 	--zcs-font: 'Outfit', 'Hind Siliguri', system-ui, sans-serif;
 	--zcs-font-bn: 'Hind Siliguri', 'Outfit', system-ui, sans-serif;
 }
@@ -142,7 +142,7 @@ body.zcs .woocommerce a.checkout-button {
 	font-weight: 700;
 	letter-spacing: .1px;
 	text-decoration: none;
-	box-shadow: 0 6px 16px rgba(21, 101, 192, .25);
+	box-shadow: none;
 	transition: background .15s, transform .1s;
 	float: none;
 }
@@ -535,7 +535,17 @@ body.zcs .woocommerce-checkout-review-order-table .order-total td {
 
 body.zcs .woocommerce-checkout-review-order-table .order-total td strong,
 body.zcs .woocommerce-checkout-review-order-table .order-total .amount {
-	color: var(--zcs-accent);
+	color: var(--zcs-text);
+}
+
+body.zcs.woocommerce-checkout #payment::before {
+	content: "পেমেন্ট পদ্ধতি";
+	display: block;
+	margin: 6px 0 12px;
+	font-family: var(--zcs-font);
+	font-size: 15px;
+	font-weight: 600;
+	color: var(--zcs-text);
 }
 
 /* ───────── Checkout: payment ───────── */
@@ -722,6 +732,231 @@ body.zcs .woocommerce-terms-and-conditions-wrapper {
 
 body.zcs .woocommerce-terms-and-conditions-wrapper a {
 	color: var(--zcs-accent);
+}
+
+/* ───────── Online payment (MFS + bank) ───────── */
+
+body.zcs .zcs-op {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	font-size: 14px;
+	color: var(--zcs-text-2);
+}
+
+body.zcs .zcs-op p {
+	margin: 0;
+}
+
+body.zcs .zcs-op-lead strong {
+	color: var(--zcs-text);
+	font-size: 15px;
+}
+
+body.zcs .zcs-op-group {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	min-width: 0;
+}
+
+body.zcs .zcs-op-cap {
+	display: block;
+	margin: 0 0 8px;
+	padding: 0;
+	font-family: var(--zcs-font);
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: .5px;
+	text-transform: uppercase;
+	color: var(--zcs-text-3);
+}
+
+body.zcs .zcs-op-tiles {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+	gap: 8px;
+}
+
+body.zcs .zcs-op-radio {
+	position: absolute;
+	opacity: 0;
+	width: 1px;
+	height: 1px;
+	pointer-events: none;
+}
+
+body.zcs .woocommerce-checkout #payment div.payment_box label.zcs-op-tile,
+body.zcs label.zcs-op-tile {
+	--brand: var(--zcs-text);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 46px;
+	margin: 0;
+	padding: 8px 10px;
+	background: var(--zcs-surface);
+	border: 1.5px solid var(--zcs-border);
+	border-radius: var(--zcs-r-sm);
+	font-family: var(--zcs-font);
+	font-size: 15px;
+	font-weight: 700;
+	color: var(--brand);
+	text-align: center;
+	cursor: pointer;
+	transition: border-color .15s, background .15s;
+}
+
+body.zcs label.zcs-op-tile:hover {
+	border-color: var(--zcs-text-3);
+}
+
+body.zcs .zcs-op-radio:checked + label.zcs-op-tile {
+	border-color: var(--zcs-accent);
+	background: var(--zcs-accent-bg);
+	box-shadow: inset 0 0 0 1px var(--zcs-accent);
+}
+
+body.zcs .zcs-op-radio:focus-visible + label.zcs-op-tile {
+	outline: 2px solid var(--zcs-accent);
+	outline-offset: 2px;
+}
+
+body.zcs .zcs-op-panel {
+	padding: 12px 14px;
+	background: var(--zcs-bg);
+	border: 1px solid var(--zcs-border);
+	border-radius: var(--zcs-r-sm);
+}
+
+body.zcs .zcs-op-panel[hidden] {
+	display: none !important;
+}
+
+body.zcs .zcs-op-how {
+	margin: 0 0 8px !important;
+}
+
+body.zcs .zcs-op-nums {
+	list-style: none;
+	margin: 0 !important;
+	padding: 0;
+}
+
+body.zcs .zcs-op-nums li {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	margin: 0;
+	padding: 8px 0;
+	border-top: 1px dashed var(--zcs-border);
+}
+
+body.zcs .zcs-op-nums li:first-child {
+	border-top: 0;
+}
+
+body.zcs .zcs-op-num {
+	display: block;
+	font-family: var(--zcs-font);
+	font-size: 16px;
+	font-weight: 600;
+	letter-spacing: .5px;
+	color: var(--zcs-text);
+	font-variant-numeric: tabular-nums;
+	word-break: break-all;
+}
+
+body.zcs .zcs-op-tag {
+	display: block;
+	font-size: 12px;
+	color: var(--zcs-text-3);
+}
+
+body.zcs .zcs-op-bank {
+	display: grid;
+	gap: 0;
+	margin: 0;
+}
+
+body.zcs .zcs-op-bank > div {
+	display: grid;
+	grid-template-columns: 120px minmax(0, 1fr);
+	gap: 10px;
+	align-items: center;
+	padding: 7px 0;
+	border-top: 1px dashed var(--zcs-border);
+}
+
+body.zcs .zcs-op-bank > div:first-child {
+	border-top: 0;
+}
+
+body.zcs .zcs-op-bank dt {
+	margin: 0;
+	font-size: 12.5px;
+	font-weight: 400;
+	color: var(--zcs-text-3);
+}
+
+body.zcs .zcs-op-bank dd {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	margin: 0;
+	color: var(--zcs-text);
+	font-weight: 500;
+}
+
+body.zcs .woocommerce-checkout #payment button.zcs-op-copy,
+body.zcs button.zcs-op-copy {
+	flex-shrink: 0;
+	min-height: 0;
+	margin: 0;
+	padding: 5px 12px;
+	background: var(--zcs-surface);
+	border: 1px solid var(--zcs-border);
+	border-radius: 6px;
+	color: var(--zcs-text-2);
+	font-family: var(--zcs-font);
+	font-size: 12.5px;
+	font-weight: 600;
+	line-height: 1.4;
+	cursor: pointer;
+}
+
+body.zcs button.zcs-op-copy:hover {
+	border-color: var(--zcs-text-3);
+	color: var(--zcs-text);
+	background: var(--zcs-surface);
+}
+
+body.zcs button.zcs-op-copy.is-done {
+	border-color: var(--zcs-green);
+	color: var(--zcs-green);
+}
+
+body.zcs .zcs-op-note {
+	font-size: 12.5px;
+	color: var(--zcs-text-3);
+}
+
+body.zcs .zcs-op-fields .form-row {
+	margin-top: 0 !important;
+}
+
+body.zcs .zcs-op-fields {
+	display: grid;
+	gap: 12px;
+}
+
+@media (max-width: 480px) {
+	body.zcs .zcs-op-bank > div {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 2px;
+	}
 }
 
 /* ───────── Checkout: coupon & login toggles ───────── */
@@ -981,7 +1216,7 @@ body.zcs.woocommerce-cart .cart_totals .order-total td {
 }
 
 body.zcs.woocommerce-cart .cart_totals .order-total .amount {
-	color: var(--zcs-accent);
+	color: var(--zcs-text);
 }
 
 body.zcs.woocommerce-cart .wc-proceed-to-checkout {

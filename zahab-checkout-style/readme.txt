@@ -34,6 +34,19 @@ WooCommerce → Settings → Shipping → Shipping zones থেকে সেট 
 - "অর্ডার নিশ্চিত করুন" বাটন ও ট্রাস্ট ব্যাজ
 - মোবাইলে কার্টের প্রতিটি পণ্য কমপ্যাক্ট কার্ড হিসেবে দেখায়
 
+== অনলাইন পেমেন্ট (bKash / Nagad / Rocket / CellFin / ব্যাংক) ==
+
+WooCommerce → Settings → Payments → "অনলাইন পেমেন্ট" → Manage
+- এখানে নম্বর ও ব্যাংক অ্যাকাউন্ট বদলানো, যোগ করা বা মুছে ফেলা যায়।
+- পুরনো bKash/Nagad plugin এবং "Direct bank transfer" বন্ধ করে দিন, না হলে চেকআউটে দুবার দেখাবে।
+
+গ্রাহকের দেওয়া তথ্য কোথায় পাবেন:
+- WooCommerce → Orders: "পেমেন্ট / TrxID" কলামে মাধ্যম ও Transaction ID
+- অর্ডার খুললে Billing ঠিকানার নিচে "অনলাইন পেমেন্ট তথ্য" বক্স
+- নতুন অর্ডারের ইমেইলেও এই তথ্য থাকে
+অর্ডার "On hold" অবস্থায় আসে। অ্যাপে টাকা মিলিয়ে "Processing" করুন।
+একই Transaction ID দিয়ে দ্বিতীয়বার অর্ডার করা যায় না।
+
 == বাতিল করতে ==
 
 Plugins → Zahab Checkout Style → Deactivate। সাইট আগের অবস্থায় ফিরে যাবে।

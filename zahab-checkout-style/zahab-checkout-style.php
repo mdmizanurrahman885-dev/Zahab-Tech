@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Zahab Checkout Style
  * Description: Zahab Tech-এর জন্য পরিষ্কার, মোবাইল-ফ্রেন্ডলি Cart ও Checkout পেজ ডিজাইন।
- * Version:     1.0.0
+ * Version:     1.1.0
  * Author:      ZAHAB TECH
  * Requires Plugins: woocommerce
  */
@@ -11,7 +11,93 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ZCS_VERSION', '1.0.0' );
+define( 'ZCS_VERSION', '1.1.0' );
+
+add_action( 'before_woocommerce_init', function () {
+	if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+	}
+} );
+
+add_action( 'plugins_loaded', function () {
+	if ( class_exists( 'WC_Payment_Gateway' ) ) {
+		require_once __DIR__ . '/includes/class-zcs-gateway.php';
+	}
+} );
+
+add_filter( 'woocommerce_payment_gateways', function ( $gateways ) {
+	if ( class_exists( 'ZCS_Gateway_Online' ) ) {
+		$gateways[] = 'ZCS_Gateway_Online';
+	}
+	return $gateways;
+} );
+
+function zcs_payment_summary( $order ) {
+	$trx = $order->get_meta( '_zcs_trx' );
+	if ( ! $trx ) {
+		return array();
+	}
+	return array(
+		'মাধ্যম'          => $order->get_meta( '_zcs_provider' ),
+		'প্রেরক'          => $order->get_meta( '_zcs_sender' ),
+		'Transaction ID' => $trx,
+	);
+}
+
+add_action( 'woocommerce_admin_order_data_after_billing_address', function ( $order ) {
+	$rows = zcs_payment_summary( $order );
+	if ( ! $rows ) {
+		return;
+	}
+	echo '<div style="margin-top:12px;padding:10px 12px;background:#F6F8FB;border:1px solid #E3E8EF;border-radius:6px;">';
+	echo '<h3 style="margin:0 0 6px;">অনলাইন পেমেন্ট তথ্য</h3>';
+	foreach ( $rows as $label => $value ) {
+		echo '<p style="margin:2px 0;"><strong>' . esc_html( $label ) . ':</strong> <span style="font-family:monospace;font-size:13px;">' . esc_html( $value ) . '</span></p>';
+	}
+	echo '<p style="margin:6px 0 0;color:#6B7280;">আপনার অ্যাপের লেনদেনের তালিকায় এই ID মিলিয়ে অর্ডারটি Processing করুন।</p>';
+	echo '</div>';
+} );
+
+add_filter( 'woocommerce_get_order_item_totals', function ( $totals, $order ) {
+	$rows = zcs_payment_summary( $order );
+	if ( $rows ) {
+		$totals['zcs_payment'] = array(
+			'label' => 'পেমেন্ট তথ্য:',
+			'value' => esc_html( $rows['মাধ্যম'] . ' · ' . $rows['প্রেরক'] . ' · TrxID: ' . $rows['Transaction ID'] ),
+		);
+	}
+	return $totals;
+}, 10, 2 );
+
+$zcs_add_column = function ( $columns ) {
+	$out = array();
+	foreach ( $columns as $key => $label ) {
+		$out[ $key ] = $label;
+		if ( 'order_status' === $key ) {
+			$out['zcs_trx'] = 'পেমেন্ট / TrxID';
+		}
+	}
+	if ( ! isset( $out['zcs_trx'] ) ) {
+		$out['zcs_trx'] = 'পেমেন্ট / TrxID';
+	}
+	return $out;
+};
+$zcs_render_column = function ( $column, $order ) {
+	if ( 'zcs_trx' !== $column ) {
+		return;
+	}
+	$order = $order instanceof WC_Order ? $order : wc_get_order( $order );
+	$rows  = $order ? zcs_payment_summary( $order ) : array();
+	if ( $rows ) {
+		echo esc_html( $rows['মাধ্যম'] ) . '<br><code>' . esc_html( $rows['Transaction ID'] ) . '</code>';
+	} else {
+		echo '—';
+	}
+};
+add_filter( 'manage_woocommerce_page_wc-orders_columns', $zcs_add_column );
+add_action( 'manage_woocommerce_page_wc-orders_custom_column', $zcs_render_column, 10, 2 );
+add_filter( 'manage_edit-shop_order_columns', $zcs_add_column );
+add_action( 'manage_shop_order_posts_custom_column', $zcs_render_column, 10, 2 );
 
 add_action( 'wp_enqueue_scripts', function () {
 	if ( ! function_exists( 'is_checkout' ) || ! ( is_cart() || is_checkout() ) ) {
@@ -29,6 +115,15 @@ add_action( 'wp_enqueue_scripts', function () {
 		array( 'zcs-fonts' ),
 		ZCS_VERSION
 	);
+	if ( is_checkout() ) {
+		wp_enqueue_script(
+			'zcs-checkout',
+			plugin_dir_url( __FILE__ ) . 'assets/zahab-checkout.js',
+			array( 'jquery' ),
+			ZCS_VERSION,
+			true
+		);
+	}
 }, 99 );
 
 add_filter( 'body_class', function ( $classes ) {
