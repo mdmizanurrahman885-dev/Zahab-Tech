@@ -588,7 +588,7 @@ body.zcs .woocommerce-checkout #payment ul.payment_methods li > label {
 	cursor: pointer;
 }
 
-body.zcs .woocommerce-checkout #payment ul.payment_methods li img {
+body.zcs .woocommerce-checkout #payment ul.payment_methods li > label img {
 	max-height: 22px;
 	width: auto;
 	margin: 0 0 0 6px;
@@ -645,21 +645,15 @@ body.zcs .woocommerce-checkout #payment div.payment_box table td {
 	text-align: left;
 }
 
-body.zcs .woocommerce-checkout #payment div.payment_box ol,
-body.zcs .woocommerce-checkout #payment div.payment_box ul {
-	margin: 6px 0 10px 18px;
-	padding: 0;
-}
-
 body.zcs .woocommerce-checkout #payment div.payment_box fieldset {
 	margin: 10px 0 0;
 	padding: 0;
 	border: 0;
 }
 
-body.zcs .woocommerce-checkout #payment div.payment_box .form-row,
-body.zcs .woocommerce-checkout #payment div.payment_box p:has(> input),
-body.zcs .woocommerce-checkout #payment div.payment_box div:has(> input) {
+/* Only rows that hold a typed field; icon/radio pickers keep the gateway's own layout. */
+body.zcs .woocommerce-checkout #payment div.payment_box .form-row:has(input[type="text"], input[type="tel"], input[type="number"]),
+body.zcs .woocommerce-checkout #payment div.payment_box p:has(> input[type="text"], > input[type="tel"], > input[type="number"]) {
 	display: flex;
 	flex-direction: column;
 	gap: 6px;
@@ -670,12 +664,16 @@ body.zcs .woocommerce-checkout #payment div.payment_box div:has(> input) {
 }
 
 body.zcs .woocommerce-checkout #payment div.payment_box label {
+	font-family: var(--zcs-font);
+	color: var(--zcs-text);
+}
+
+body.zcs .woocommerce-checkout #payment div.payment_box label:has(+ input[type="text"], + input[type="tel"], + input[type="number"]),
+body.zcs .woocommerce-checkout #payment div.payment_box .form-row:has(input[type="text"], input[type="tel"]) > label {
 	display: block;
 	margin: 0;
-	font-family: var(--zcs-font);
 	font-size: 13px;
 	font-weight: 600;
-	color: var(--zcs-text);
 }
 
 body.zcs .woocommerce-checkout #payment div.payment_box input[type="text"],
@@ -709,14 +707,6 @@ body.zcs .woocommerce-checkout #payment div.payment_box input::placeholder {
 	color: var(--zcs-text-3);
 	font-weight: 400;
 	letter-spacing: 0;
-}
-
-body.zcs .woocommerce-checkout #payment ul.payment_methods li div.payment_box img {
-	max-width: 100%;
-	height: auto;
-	max-height: none;
-	margin: 8px 0;
-	border-radius: 6px;
 }
 
 body.zcs .woocommerce-checkout #payment div.form-row.place-order {
