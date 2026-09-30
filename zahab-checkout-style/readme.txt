@@ -1,57 +1,52 @@
 === Zahab Checkout Style ===
+Contributors: zahabtech
+Tags: woocommerce, checkout, cart, bkash, nagad
+Requires at least: 6.0
+Tested up to: 6.8
+Requires PHP: 7.4
+WC requires at least: 8.0
+Stable tag: 2.0.0
+License: GPLv2 or later
 
-Zahab Tech-এর Cart ও Checkout পেজের জন্য পরিষ্কার, মোবাইল-ফ্রেন্ডলি ডিজাইন।
+Zahab Tech-এর Cart ও Checkout পেজের পরিষ্কার, মোবাইল-ফ্রেন্ডলি ডিজাইন, সাথে bKash / Nagad / Rocket / Upay / CellFin / ব্যাংক "অনলাইন পেমেন্ট"।
 
-== ইনস্টল ==
+== Description ==
 
-1. WordPress Dashboard → Plugins → Add New → Upload Plugin
-2. zahab-checkout-style.zip ফাইলটি বেছে নিয়ে Install Now → Activate
+* Cart: পণ্যের কার্ড, +/− পরিমাণ বাটন (নিজে আপডেট হয়), কুপন, স্টিকি কার্ট সারসংক্ষেপ, ফ্রি ডেলিভারি নোটিস, খালি কার্টের পেজ
+* Checkout: ধাপ নির্দেশক, বাংলা ফর্ম, দেশ বাংলাদেশে লক, বাংলাদেশি মোবাইল নম্বর যাচাই, স্টিকি অর্ডার সারসংক্ষেপ
+* অনলাইন পেমেন্ট: নম্বর কপি বাটন, প্রেরকের নম্বর ও Transaction ID, একই TrxID দুবার ব্যবহার করা যায় না
+* অর্ডার "On hold" অবস্থায় আসে; Orders তালিকায় "পেমেন্ট / TrxID" কলাম
+* শুধু Cart ও Checkout পেজের মূল অংশে কাজ করে। Header, Footer, মেনু, প্রোডাক্ট পেজ বদলায় না
+* WooCommerce template override করে না; শুধু hooks, filters ও CSS
 
-== জরুরি: Checkout ও Cart পেজ "Classic" হতে হবে ==
+== Installation ==
 
-নতুন WooCommerce-এ Cart/Checkout পেজ Gutenberg Block দিয়ে বানানো থাকে।
-এই plugin শুধু Classic (shortcode) পেজে কাজ করে।
+1. Plugins → Add New Plugin → Upload Plugin → zahab-checkout-style.zip → Install Now → Activate
+2. Cart পেজে [woocommerce_cart] এবং Checkout পেজে [woocommerce_checkout] shortcode রাখুন (Block দিয়ে বানানো পেজে কাজ করবে না)
+3. WooCommerce → Settings → Payments → "অনলাইন পেমেন্ট" চালু করুন, নম্বর মিলিয়ে নিন
+4. পুরনো bKash/Nagad plugin ও Direct bank transfer বন্ধ করুন
+5. WooCommerce → Settings → Shipping:
+   Inside Dhaka Delivery 80, Outside Dhaka Delivery 120,
+   Free shipping (Minimum order amount 1000) চাইলে যোগ করুন
+6. Cache plugin থাকলে Purge All
 
-1. Pages → Checkout → Edit
-2. পেজের সব কনটেন্ট মুছে একটি Shortcode ব্লক দিন: [woocommerce_checkout]
-3. Cart পেজে একইভাবে দিন: [woocommerce_cart]
-4. Update চাপুন
+== Frequently Asked Questions ==
 
-Elementor দিয়ে এডিট করা পেজ হলে Shortcode widget-এ একই shortcode বসান।
+= ফ্রি ডেলিভারি নোটিস কখন দেখায়? =
+যখন কার্টে সত্যিই Free shipping অপশন পাওয়া যায়। Shipping zone-এ Free shipping method যোগ না করলে নোটিস দেখাবে না।
 
-== ডেলিভারি চার্জ (ঢাকার ভেতরে / বাইরে) ==
+= Plugin বন্ধ করলে কী হবে? =
+Cart ও Checkout সাথে সাথে WooCommerce-এর আগের চেহারায় ফিরে যাবে। আগের অর্ডারের পেমেন্ট তথ্য থেকে যাবে।
 
-WooCommerce → Settings → Shipping → Shipping zones থেকে সেট করুন:
-যে zone-এ "Inside Dhaka Delivery" ও "Outside Dhaka Delivery" আছে সেটি খুলুন:
-- Inside Dhaka Delivery → Edit → Cost: 80
-- Outside Dhaka Delivery → Edit → Cost: 120
-- Save changes
+== Changelog ==
 
-== কী কী বদলায় ==
+= 2.0.0 =
+* সম্পূর্ণ নতুন ডিজাইন সিস্টেম
+* +/− পরিমাণ বাটন, ব্র্যান্ড লাইন, খালি কার্ট পেজ, ফ্রি ডেলিভারি নোটিস
+* Checkout: ধাপ নির্দেশক, দেশ লক, মোবাইল নম্বর যাচাই, অর্ডার নোট লিংকের পেছনে
+* পেমেন্ট টাইলে ব্র্যান্ড রঙের দাগ, নম্বর কার্ড, হলুদ চার্জ নোট
+* সব গ্রাহক-দেখা বার্তা বাংলায়
+* uninstall.php, minified CSS
 
-শুধু Cart ও Checkout পেজের মূল অংশ (#content)। Header, Footer, মেনু, mini-cart বদলায় না।
-
-
-- দুই কলাম লেআউট: বামে ফর্ম, ডানে স্টিকি অর্ডার সারসংক্ষেপ (মোবাইলে এক কলাম)
-- অপ্রয়োজনীয় ফিল্ড বাদ: Company, Address line 2, Postcode
-- বাংলা লেবেল; ইমেইল ও নামের শেষ অংশ ঐচ্ছিক
-- পেমেন্ট মেথড কার্ড স্টাইলে, বেছে নেওয়া অপশন হাইলাইট হয়
-- "অর্ডার নিশ্চিত করুন" বাটন ও ট্রাস্ট ব্যাজ
-- মোবাইলে কার্টের প্রতিটি পণ্য কমপ্যাক্ট কার্ড হিসেবে দেখায়
-
-== অনলাইন পেমেন্ট (bKash / Nagad / Rocket / CellFin / ব্যাংক) ==
-
-WooCommerce → Settings → Payments → "অনলাইন পেমেন্ট" → Manage
-- এখানে নম্বর ও ব্যাংক অ্যাকাউন্ট বদলানো, যোগ করা বা মুছে ফেলা যায়।
-- পুরনো bKash/Nagad plugin এবং "Direct bank transfer" বন্ধ করে দিন, না হলে চেকআউটে দুবার দেখাবে।
-
-গ্রাহকের দেওয়া তথ্য কোথায় পাবেন:
-- WooCommerce → Orders: "পেমেন্ট / TrxID" কলামে মাধ্যম ও Transaction ID
-- অর্ডার খুললে Billing ঠিকানার নিচে "অনলাইন পেমেন্ট তথ্য" বক্স
-- নতুন অর্ডারের ইমেইলেও এই তথ্য থাকে
-অর্ডার "On hold" অবস্থায় আসে। অ্যাপে টাকা মিলিয়ে "Processing" করুন।
-একই Transaction ID দিয়ে দ্বিতীয়বার অর্ডার করা যায় না।
-
-== বাতিল করতে ==
-
-Plugins → Zahab Checkout Style → Deactivate। সাইট আগের অবস্থায় ফিরে যাবে।
+= 1.1.2 =
+* শুধু পেজের মূল অংশে স্টাইল সীমিত

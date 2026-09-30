@@ -13,7 +13,7 @@ ZAHAB TECH — নতুন Cart ও Checkout পেজ বসানোর ন�
 3. উপরে "Add New Plugin" → "Upload Plugin"
 4. "Choose File" → zahab-checkout-style.zip বেছে নিন
 5. "Install Now" → "Activate Plugin"
-6. দেখুন: Plugins তালিকায় "Zahab Checkout Style — Version 1.1.2"
+6. দেখুন: Plugins তালিকায় "Zahab Checkout Style — Version 2.0.0"
 
 
 ধাপ ২ — Cart ও Checkout পেজ ঠিক করা
@@ -44,6 +44,10 @@ ZAHAB TECH — নতুন Cart ও Checkout পেজ বসানোর ন�
 2. যে zone-এ "Inside Dhaka Delivery" ও "Outside Dhaka Delivery" আছে → Edit
 3. Inside Dhaka Delivery → Edit → Cost: 80 → Save
 4. Outside Dhaka Delivery → Edit → Cost: 120 → Save
+5. (ঐচ্ছিক) ফ্রি ডেলিভারি: "Add shipping method" → Free shipping →
+   "A minimum order amount" → Minimum order amount: 1000 → Save
+   এটা যোগ করলে ৳১০০০+ কার্টে "ফ্রি ডেলিভারি আনলক হয়েছে!" নোটিস দেখাবে।
+   যোগ না করলে নোটিস দেখাবে না।
 
 
 ধাপ ৫ — পরীক্ষা
@@ -51,11 +55,12 @@ ZAHAB TECH — নতুন Cart ও Checkout পেজ বসানোর ন�
 1. Cache plugin থাকলে (LiteSpeed / WP Rocket) → "Purge All"
 2. সাইটে একটি পণ্য কার্টে দিন → Cart পেজ দেখুন → Checkout এ যান
    (কম্পিউটারে Ctrl + Shift + R চাপুন)
-3. একটি পরীক্ষামূলক অর্ডার দিন:
+3. Cart পেজে +/− বাটনে পরিমাণ বদলান, এক সেকেন্ডের মধ্যে মোট দাম নিজে আপডেট হবে
+4. একটি পরীক্ষামূলক অর্ডার দিন:
    অনলাইন পেমেন্ট → bKash → যেকোনো নম্বর ও Transaction ID
-4. WooCommerce → Orders → অর্ডারটি এসেছে কিনা এবং
+5. WooCommerce → Orders → অর্ডারটি এসেছে কিনা এবং
    "পেমেন্ট / TrxID" কলামে তথ্য আছে কিনা দেখুন
-5. পরীক্ষা শেষে অর্ডারটি Trash এ দিন
+6. পরীক্ষা শেষে অর্ডারটি Trash এ দিন
 
 
 প্রতিদিনের কাজ — অনলাইন পেমেন্টের অর্ডার
@@ -82,4 +87,5 @@ Upay নম্বর দিলে Upay অপশনও চলে আসবে।
 - Payments এ পুরনো পেমেন্ট plugin আবার চালু করুন
 সাইট সাথে সাথে আগের মতো হয়ে যাবে।
 
-Header, Footer, মেনু — কিছুই বদলায় না।
+Header, Footer, মেনু, প্রোডাক্ট পেজ — কিছুই বদলায় না।
+Checkout-এ দেশ শুধু "Bangladesh" দেখাবে (লক করা)।

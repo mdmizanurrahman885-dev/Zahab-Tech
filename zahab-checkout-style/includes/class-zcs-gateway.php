@@ -232,17 +232,18 @@ class ZCS_Gateway_Online extends WC_Payment_Gateway {
 			echo '</div>';
 		}
 
-		$note = $this->get_option( 'charge_note' );
-		if ( $note ) {
-			echo '<p class="zcs-op-note">' . esc_html( $note ) . '</p>';
-		}
-
 		echo '<div class="zcs-op-fields">';
 		echo '<p class="form-row"><label for="zcs_sender"><span class="zcs-op-sender-label">যে নম্বর থেকে পাঠিয়েছেন</span> <abbr class="required" title="required">*</abbr></label>';
-		echo '<input type="text" class="input-text" id="zcs_sender" name="zcs_sender" inputmode="tel" autocomplete="off" placeholder="01XXXXXXXXX"></p>';
+		echo '<input type="text" class="input-text" id="zcs_sender" name="zcs_sender" inputmode="tel" autocomplete="off" aria-required="true" placeholder="01XXXXXXXXX"></p>';
 		echo '<p class="form-row"><label for="zcs_trx"><span class="zcs-op-trx-label">Transaction ID</span> <abbr class="required" title="required">*</abbr></label>';
-		echo '<input type="text" class="input-text" id="zcs_trx" name="zcs_trx" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="যেমন: 9K7A2B4XQ1"></p>';
-		echo '</div></div>';
+		echo '<input type="text" class="input-text zcs-op-trx" id="zcs_trx" name="zcs_trx" maxlength="30" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-required="true" placeholder="যেমন: 9K7A2B4XQ1"></p>';
+		echo '</div>';
+
+		$note = $this->get_option( 'charge_note' );
+		if ( $note ) {
+			echo '<p class="zcs-op-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16.5v.01"/></svg><span>' . esc_html( $note ) . '</span></p>';
+		}
+		echo '</div>';
 	}
 
 	private function posted() {
